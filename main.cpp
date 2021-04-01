@@ -86,7 +86,9 @@ void runCommands(BinaryTree<T> tree){
       //tree.getNumSingleParent();
     }
     else if(command == "f") {
-      cout << "Number of leaf nodes: " + tree.getNumLeafNodes(root) << endl;
+      cout << "Number of leaf nodes: ";
+      cout << tree.getNumLeafNodes(root);
+      cout << endl;
       cout << endl;
     }
     else if(command == "t") {
