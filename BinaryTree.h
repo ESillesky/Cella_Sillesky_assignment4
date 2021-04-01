@@ -30,6 +30,6 @@ public:
   int getNumLeafNodes(NodeType<T>* root);
   //getSumOfSubtrees();
   NodeType<T>* getRoot();  
- private:
+private:
   NodeType<T> *root; //not sure if right
 };
