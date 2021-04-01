@@ -34,13 +34,15 @@ void runCommands(BinaryTree<T> tree){
       cout << endl;
     }
     else if(command == "d") {
-      //T item;
+      T item;
       cout << "Item to delete: ";
-      //cin >> item;
+      cin >> item;
+      cout << endl;
+      tree.deleteItem(root, item);
+      cout << "In-Order: ";
+      tree.inOrder(root);
       cout << endl;
       cout << endl;
-      //list.deleteItem(item);
-
     }
     else if(command == "l") {
       cout << "Tree Length: " << tree.getLength(root) << endl;
@@ -117,7 +119,7 @@ int main(int argc, char *argv[]) {
     cout << "\nEnter tree type (i - int, f - float, s - std::string): ";
     cin >> treeType;
     cout << endl;
-    cout << "insert (i), delete (d), retrieve (r), length (l), in-order (n), pre-order (p), post-order (o), \n";
+    cout << "insert (i), delete (d), retrieve (r), length (l), in-order (n), pre-order (p), post-order (o)" << endl;
     cout << "getNumSingleParent (s), getNumLeafNodes (f), getSumOfSubtrees (t), quit (q)" << endl;
     cout << endl;
     if(treeType == "s" || treeType == "i" || treeType == "f") {
