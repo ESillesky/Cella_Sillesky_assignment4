@@ -28,7 +28,6 @@ void BinaryTree<T>::insert(NodeType<T>*& node, T &key) {
     //base case
     //found insertion spot
     if (node == nullptr) {
-      cout << "inserting: " << key << endl;
       node = new NodeType<T>;
       node->left = NULL;
       node->right = NULL;

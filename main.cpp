@@ -12,8 +12,6 @@ void runCommands(BinaryTree<T> tree){
 
   NodeType<T> * root = tree.getRoot();
 
-  cout << "tree root: " << root->key << endl;
-  
   do {
 
     cout << "\nEnter a command: ";
@@ -30,7 +28,6 @@ void runCommands(BinaryTree<T> tree){
       cout << "Item to insert: ";
       cin >> key;
       cout << endl;
-
 
       tree.insert(root,key);
       tree.printTree(root);
