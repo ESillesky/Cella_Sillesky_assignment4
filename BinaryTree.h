@@ -18,16 +18,16 @@ class BinaryTree {
 public:
   BinaryTree();
   ~BinaryTree();
-  void insert(NodeType<T>*& tree, T &key);
+  void destroy(NodeType<T>* root);
+  void insert(NodeType<T>*& node, T &key);
   void deleteItem(T &key);
-  void retrieve(T &item, bool &found) const;
-  void preOrder() const;
-  void inOrder() const;
-  void postOrder() const;
-  int getLength() const;
-  void printTree(NodeType<T>*& root);
+  void retrieve(NodeType<T>* root, T &item, bool &found) const;
+  void preOrder(NodeType<T>* root) const;
+  void inOrder(NodeType<T>* root) const;
+  void postOrder(NodeType<T>* root) const;
+  int getLength(NodeType<T>* root) const;
   //getNumSingleParent();
-  //getNumLeafNodes();
+  int getNumLeafNodes(NodeType<T>* root);
   //getSumOfSubtrees();
   NodeType<T>* getRoot();  
  private:
