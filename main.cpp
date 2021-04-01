@@ -9,11 +9,18 @@ std::string token; //individual elements
 
 template <class T>
 void runCommands(BinaryTree<T> tree){
+
+  NodeType<T> * root = tree.getRoot();
+
+  cout << "tree root: " << root->key << endl;
+  
   do {
+
     cout << "\nEnter a command: ";
     cin >> command;
     cout << endl;
 
+    
     if(command == "q") {
       cout << "Quitting program...\n" << endl;
       exit(1);
@@ -21,10 +28,12 @@ void runCommands(BinaryTree<T> tree){
     else if(command == "i") {
       T key;
       cout << "Item to insert: ";
-      //cin >> item;
+      cin >> key;
       cout << endl;
-      tree.insert(key);
 
+
+      tree.insert(root,key);
+      tree.printTree(root);
     }
     else if(command == "d") {
       //T item;
@@ -72,6 +81,9 @@ int main(int argc, char *argv[]) {
   BinaryTree<int> intTree;
   BinaryTree<float> floatTree;
   ifstream inputFile(argv[1], ios::in);
+  NodeType<std::string> * stringRoot = nullptr;
+  NodeType<int> * intRoot = nullptr;
+  NodeType<float> * floatRoot = nullptr;
 
   if(!inputFile){ //error if file not found                                     
     cout << "Failed to open the input file" << endl;
@@ -91,40 +103,41 @@ int main(int argc, char *argv[]) {
         if(line != " ") { //if file not empty                                                                     
           while(getline(iss, token, ' ')){
             string item = token;
-	    //stringTree.insertItem(item); //added to list                                                            
+	    stringTree.insert(stringRoot,item); //added to list
           }
         }
         runCommands(stringTree);
       }
-    }
-    else if (treeType == "i") { //int                                                                           
-      getline(inputFile, line); //converts file to string                                                       
-      istringstream iss(line);
-      if(line != " ") { //if file not empty                                                                     
-	while(getline(iss, token, ' ')){
-	  int item = stoi(token);
-	  //intTree.insertItem(item); //added to list                                                             
-	}
-      }
-      runCommands(intTree);
-    }
-    else if (treeType == "f") { //float                                                                         
-      getline(inputFile, line); //converts file to string                                                       
-      istringstream iss(line);
+    
+      else if (treeType == "i") { //int
 
-      if(line != " ") { //if file not empty                                                                     
-	while(getline(iss, token, ' ')){
-	  float item = stof(token);
-	  //floatTree.insertItem(item); //added to list                                                           
+	getline(inputFile, line); //converts file to string                                                       
+	istringstream iss(line);
+	if(line != " ") { //if file not empty                                                                     
+	  while(getline(iss, token, ' ')){
+	    int item = stoi(token);
+	    intTree.insert(intRoot,item); //added to list                                                             
+	  }
 	}
+	runCommands(intTree);
       }
-      runCommands(floatTree);
+      else if (treeType == "f") { //float                                                                         
+	getline(inputFile, line); //converts file to string                                                       
+	istringstream iss(line);
+
+	if(line != " ") { //if file not empty                                                                     
+	  while(getline(iss, token, ' ')){
+	    float item = stof(token);
+	    floatTree.insert(floatRoot,item); //added to list                                                           
+	  }
+	}
+	runCommands(floatTree);
+      }
     }
-  
-  else {
-    cout << "Invalid Input" << endl;
-    exit(1);
+    else {
+      cout << "Invalid Input" << endl;
+      exit(1);
+    }
   }
-}
 }
 
