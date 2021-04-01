@@ -60,9 +60,51 @@ void BinaryTree<T>::insert(NodeType<T>*& node, T &key) {
   }
 }
 
+//Pre-Condition: Tree and parameter key initialized.
+//Post-Condition: Remove a node with a key value equal to the parameter key’s value otherwise 
+//leave the tree unchanged (if the key is not present). In situations, where the node to be deleted 
+//has two children, replace the deleted node with its immediate predecessor or successor.
+//Coded by: Gian Cella
 template <class T>
-void BinaryTree<T>::deleteItem(T &key) {
-
+void BinaryTree<T>::deleteItem(NodeType<T>*& root, T &key) {
+  T data;
+  NodeType<T>* tempPtr;
+  tempPtr = root;
+  bool found;
+  retrieve(root, key, found);
+  if(root == nullptr){ //empty tree
+    return; 
+  }
+  else if(found == false) {
+    cout << "Item not in tree." << endl;
+    cout << endl;
+  }
+  else{
+    if(key < root->key) { //move to left subtree
+      deleteItem(root->left, key); //key less than
+    }
+    else if(key > root->key) { //move to right subtree
+      deleteItem(root->right, key); //key greater than
+    }
+    else {
+      if(root->left == NULL){ //no left subtree
+        root = root->right;
+        delete tempPtr;
+      }
+      else if(root->right == NULL){ //no right subtree
+        root = root->left;
+        delete tempPtr;
+      }
+      else{
+        while((root->left)->right != NULL) { //predecessor
+          (root->left) = (root->left)->right;
+        }
+        data = (root->left)->key; //input pred
+        root->key = data; //removes old data
+        deleteItem(root->left, data);
+      }
+    }
+  }
 }
 
 //Pre-Condition: Tree, item, and found are all initialized.
