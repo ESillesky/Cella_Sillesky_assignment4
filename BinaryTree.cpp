@@ -112,6 +112,7 @@ void BinaryTree<T>::deleteItem(NodeType<T>*& root, T &key) {
 //the value of item and found should be equal to true if n exists. Otherwise found should be equal to false.
 //Coded by: Gian Cella
 template <class T>
+
 void BinaryTree<T>::retrieve(NodeType<T>*& root, T &item, bool &found) const {
   if(root == NULL) {
     found = false; //item not found in the tree
@@ -132,7 +133,9 @@ void BinaryTree<T>::retrieve(NodeType<T>*& root, T &item, bool &found) const {
 //Post-Condition: Print out the tree in pre-order.
 //Coded by: Gian Cella
 template <class T>
+
 void BinaryTree<T>::preOrder(NodeType<T>*& root) const {
+
   if(root != NULL){
     cout << root->key << " "; //node
     preOrder(root->left); //left subtree
@@ -147,7 +150,9 @@ void BinaryTree<T>::preOrder(NodeType<T>*& root) const {
 //Post-Condition: Print out the tree in in-order.
 //Coded by: Gian Cella
 template <class T>
+
 void BinaryTree<T>::inOrder(NodeType<T>*& root) const {
+
   if(root != NULL){
     inOrder(root->left); //left subtree
     cout << root->key << " "; //node
@@ -159,7 +164,9 @@ void BinaryTree<T>::inOrder(NodeType<T>*& root) const {
 //Post-Condition: Print out the tree in post-order.
 //Coded by: Gian Cella
 template <class T>
+
 void BinaryTree<T>::postOrder(NodeType<T>*& root) const {
+
   if(root != NULL){
     postOrder(root->left); //left subtree
     postOrder(root->right); //right subtree
@@ -172,13 +179,16 @@ void BinaryTree<T>::postOrder(NodeType<T>*& root) const {
 //(same as the method discussed in the class)
 //Coded by: Gian Cella
 template <class T>
+
 int BinaryTree<T>::getLength(NodeType<T>*& root) const {
+
   if(root == NULL) { //nothing in the tree
     return 0;
   }
   else {
     return getLength(root->left) + getLength(root->right) + 1; //all members plus the root
   }
+
 }
 
 //This function should count the number of leaf nodes in the BST 
@@ -205,15 +215,17 @@ void BinaryTree<T>::printTree(NodeType<T>*& root) {
   printTree(root->left);
   cout << root->key << " ";
   printTree(root->right);
-  
+
 }
 
+//Coded by: Eliza Sillesky
 template <class T>
 int BinaryTree<T>::getSumOfSubtrees(NodeType<T>*& node) {
 
   
 }
 
+ //Helper method to get the root of a tree.
 template <class T>
 NodeType<T>* BinaryTree<T>::getRoot() {
   return root;

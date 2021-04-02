@@ -60,3 +60,4 @@ Big-O (Worst Case):
 If complexity is a polynomial, variable with highest exponent is the worst case scenario.
 Notation would be O(n) due to the majority of the code being if-else statements that do not change complexity.
 Recursion, in this case, would be complexity of n due to iterating through each node and left and right subtrees.
+
