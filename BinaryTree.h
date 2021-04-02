@@ -18,18 +18,20 @@ class BinaryTree {
 public:
   BinaryTree();
   ~BinaryTree();
+  void destroy(NodeType<T>* root);
   void insert(NodeType<T>*& tree, T &key);
-  void deleteItem(T &key);
-  void retrieve(T &item, bool &found) const;
-  void preOrder() const;
-  void inOrder() const;
-  void postOrder() const;
-  int getLength() const;
+  void deleteItem(NodeType<T>*& root, T &key);
+  void retrieve(NodeType<T>*& root, T &item, bool &found) const;
+  void preOrder(NodeType<T>*& root) const;
+  void inOrder(NodeType<T>*& root) const;
+  void postOrder(NodeType<T>*& root) const;
+  int getLength(NodeType<T>*& root) const;
   void printTree(NodeType<T>*& root);
   //getNumSingleParent();
   //getNumLeafNodes();
-  //getSumOfSubtrees();
-  NodeType<T>* getRoot();  
+  int getSumOfSubtrees(NodeType<T>*& node);
+  NodeType<T>* getRoot();
+  int getNumLeafNodes(NodeType<T>* root);
  private:
   NodeType<T> *root; //not sure if right
 };
