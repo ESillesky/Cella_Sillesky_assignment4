@@ -9,10 +9,10 @@ Contribution:
 *void inOrder(NodeType<T>* root) const;
 *void postOrder(NodeType<T>* root) const;
 *int getNumLeafNodes(NodeType<T>* root);
-*Split main.cpp and DoublyLinkedList.h
+*Split main.cpp and BinaryTree.h
 
 Eliza Sillesky
-Eliza.Sillesky@uga.edu
+els95861@uga.edu
 
 Contribution:
 *void insert(NodeType<T>*& node, T &key);
@@ -20,7 +20,8 @@ Contribution:
 *void getSumOfSubtrees(NodeType<T>* root);
 *NodeType<T>* getRoot(); 
 *int getLength(NodeType<T>* root) const; 
-*Split main.cpp and DoublyLinkedList.h
+*void printTree(NodeType<T>*& root)
+*Split main.cpp and BinaryTree.h
 
 
 
