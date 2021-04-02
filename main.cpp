@@ -83,7 +83,9 @@ void runCommands(BinaryTree<T> tree){
       cout << endl;
     }
     else if(command == "s") {    
-      //tree.getNumSingleParent();
+      cout << "Number of single nodes: ";
+      cout << tree.getNumSingleParent(root);
+      cout << endl;
     }
     else if(command == "f") {
       cout << "Number of leaf nodes: ";
@@ -92,7 +94,12 @@ void runCommands(BinaryTree<T> tree){
       cout << endl;
     }
     else if(command == "t") {
-      //tree.getSumOfSubtrees();                                                               
+      T key;
+      cout << "Item to get sum of subtrees: ";
+      cin >> key;
+      NodeType<T>* foundNode = tree.searchNode(key);
+      cout << "\n" << tree.getSumOfSubtrees(foundNode);
+     
     }
     else {
       cout << "Command not recognized. Try again" << endl; //wrong command  

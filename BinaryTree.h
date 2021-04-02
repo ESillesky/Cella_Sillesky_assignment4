@@ -27,10 +27,11 @@ public:
   void postOrder(NodeType<T>*& root) const;
   int getLength(NodeType<T>*& root) const;
   void printTree(NodeType<T>*& root);
-  //getNumSingleParent();
-  //getNumLeafNodes();
-  int getSumOfSubtrees(NodeType<T>*& node);
+  int getNumSingleParent(NodeType<T>* root);
+  T getSumOfSubtrees(NodeType<T>*& node);
+  NodeType<T>* searchNode(T &key);
   NodeType<T>* getRoot();
+  bool isSingleParent(NodeType<T>* node);
   int getNumLeafNodes(NodeType<T>* root);
 private:
   NodeType<T> *root; //not sure if right

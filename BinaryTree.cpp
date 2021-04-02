@@ -220,12 +220,71 @@ void BinaryTree<T>::printTree(NodeType<T>*& root) {
 
 //Coded by: Eliza Sillesky
 template <class T>
-int BinaryTree<T>::getSumOfSubtrees(NodeType<T>*& node) {
-
+T BinaryTree<T>::getSumOfSubtrees(NodeType<T>*& node) {
   
+  
+  if (node == nullptr) {
+    return 0;
+  }
+
+   return node->key + getSumOfSubtrees(node->right) + getSumOfSubtrees(node->left);
+
+
 }
 
- //Helper method to get the root of a tree.
+//Eliza
+// Helper method for getSumOfSubtrees.
+template <class T>
+NodeType<T>* BinaryTree<T>::searchNode(T& key) {
+
+  NodeType<T>* notFoundNode;
+  NodeType<T>* currentNode;
+  currentNode = root;
+  notFoundNode = nullptr;
+
+  while (currentNode != nullptr) {
+
+    if (key == currentNode->key) {
+      return currentNode;
+    }
+    else if (key < currentNode->key) {
+      currentNode = currentNode->left;
+    }
+    else {
+      currentNode = currentNode->right;
+    }
+  }
+  return notFoundNode; 
+
+}
+
+//Returns number of nodes that have one child
+template <class T>
+int BinaryTree<T>::getNumSingleParent(NodeType<T>* root) {;
+
+  // base case
+  if (root == NULL) {
+    return 0;
+  }
+  getNumSingleParent(root->left);
+  getNumSingleParent(root->right);
+   
+  return isSingleParent(root) + (getNumSingleParent(root->left) + getNumSingleParent(root->right));   
+
+
+}
+
+//checks if node is single parent
+template <class T>
+bool BinaryTree<T>::isSingleParent(NodeType<T>* node) {
+  if (node != NULL && (( node->left != NULL && node->right == NULL) || (node->left == NULL && node->right != NULL))) {
+    return 1;
+  }
+  return 0;
+}
+  
+
+//Helper method to get the root of a tree.
 template <class T>
 NodeType<T>* BinaryTree<T>::getRoot() {
   return root;
