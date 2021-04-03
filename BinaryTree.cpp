@@ -1,6 +1,7 @@
 #include "BinaryTree.h"
 
 using namespace std;
+bool addNode = false;
 
 //Pre-Condition: None.
 //Post-Condition: Tree is initialized.
@@ -35,6 +36,13 @@ void BinaryTree<T>::destroy(NodeType<T>* root) {
 //Coded by: Eliza Sillesky
 template <class T>
 void BinaryTree<T>::insert(NodeType<T>*& node, T &key) {
+  bool found;
+  retrieve(node, key, found);
+
+  if (found != 0) {
+    return;
+  }
+  
   if(root == nullptr){
     root = new NodeType<T>;
     root->left = NULL;
@@ -148,7 +156,7 @@ void BinaryTree<T>::preOrder(NodeType<T>*& root) const {
 
 //Pre-Condition: The tree has been initialized.
 //Post-Condition: Print out the tree in in-order.
-//Coded by: Gian Cella
+//Coded by: Gian Cella/Eliza Sillesky
 template <class T>
 
 void BinaryTree<T>::inOrder(NodeType<T>*& root) const {
@@ -221,14 +229,19 @@ void BinaryTree<T>::printTree(NodeType<T>*& root) {
 //Coded by: Eliza Sillesky
 template <class T>
 T BinaryTree<T>::getSumOfSubtrees(NodeType<T>*& node) {
-  
-  
+  //T sum;
   if (node == nullptr) {
     return 0;
   }
+  if(addNode){
+    return node->key + getSumOfSubtrees(node->right) + getSumOfSubtrees(node->left);
+  }else{
+    addNode = true;
+    T sum = getSumOfSubtrees(node->right) + getSumOfSubtrees(node->left);
+    addNode = false;
+    return sum;
 
-   return node->key + getSumOfSubtrees(node->right) + getSumOfSubtrees(node->left);
-
+  }
 
 }
 
@@ -254,11 +267,13 @@ NodeType<T>* BinaryTree<T>::searchNode(T& key) {
       currentNode = currentNode->right;
     }
   }
+  cout << "Item not in tree. " << endl;
   return notFoundNode; 
 
 }
 
 //Returns number of nodes that have one child
+//Eliza
 template <class T>
 int BinaryTree<T>::getNumSingleParent(NodeType<T>* root) {;
 
@@ -275,8 +290,11 @@ int BinaryTree<T>::getNumSingleParent(NodeType<T>* root) {;
 }
 
 //checks if node is single parent
+//Eliza
 template <class T>
 bool BinaryTree<T>::isSingleParent(NodeType<T>* node) {
+
+  //checks if node has a single parent or not
   if (node != NULL && (( node->left != NULL && node->right == NULL) || (node->left == NULL && node->right != NULL))) {
     return 1;
   }

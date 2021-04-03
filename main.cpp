@@ -98,8 +98,9 @@ void runCommands(BinaryTree<T> tree){
       cout << "Item to get sum of subtrees: ";
       cin >> key;
       NodeType<T>* foundNode = tree.searchNode(key);
+      if (foundNode != nullptr) {
       cout << "\n" << tree.getSumOfSubtrees(foundNode);
-     
+      }
     }
     else {
       cout << "Command not recognized. Try again" << endl; //wrong command  
