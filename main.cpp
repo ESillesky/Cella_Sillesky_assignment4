@@ -99,7 +99,7 @@ void runCommands(BinaryTree<T> tree){
       cin >> key;
       NodeType<T>* foundNode = tree.searchNode(key);
       if (foundNode != nullptr) {
-      cout << "\n" << tree.getSumOfSubtrees(foundNode);
+	cout << "\n" << "Sum of subtrees " << tree.getSumOfSubtrees(foundNode);
       }
     }
     else {
