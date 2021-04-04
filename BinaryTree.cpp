@@ -42,6 +42,7 @@ void BinaryTree<T>::insert(NodeType<T>*& node, T &key) {
   retrieve(node, key, found);
 
   if (found != 0) {
+    cout << "Item already in tree." << endl;
     return;
   }
 
