@@ -37,12 +37,15 @@ void BinaryTree<T>::destroy(NodeType<T>* root) {
 template <class T>
 void BinaryTree<T>::insert(NodeType<T>*& node, T &key) {
   bool found;
+
+  //check if node is in tree already
   retrieve(node, key, found);
 
   if (found != 0) {
     return;
   }
-  
+
+  //insert head
   if(root == nullptr){
     root = new NodeType<T>;
     root->left = NULL;
@@ -51,7 +54,7 @@ void BinaryTree<T>::insert(NodeType<T>*& node, T &key) {
     node = root;
   }
   else{
-    //base case
+
     //found insertion spot
     if (node == nullptr) {
       node = new NodeType<T>;
@@ -213,7 +216,7 @@ int BinaryTree<T>::getNumLeafNodes(NodeType<T>* root) {
   return getNumLeafNodes(root->left) + getNumLeafNodes(root->right); //add 1 for all leaf members
 }
 
-//Eliza
+
 template <class T>
 void BinaryTree<T>::printTree(NodeType<T>*& root) {
 
@@ -227,12 +230,17 @@ void BinaryTree<T>::printTree(NodeType<T>*& root) {
 }
 
 //Coded by: Eliza Sillesky
+
+//gets sum of subtrees, not including inserted node
 template <class T>
 T BinaryTree<T>::getSumOfSubtrees(NodeType<T>*& node) {
-  //T sum;
+
+  //base case
   if (node == nullptr) {
     return 0;
   }
+
+  
   if(addNode){
     return node->key + getSumOfSubtrees(node->right) + getSumOfSubtrees(node->left);
   }else{
@@ -255,11 +263,14 @@ NodeType<T>* BinaryTree<T>::searchNode(T& key) {
   currentNode = root;
   notFoundNode = nullptr;
 
+  //traverse through tree
   while (currentNode != nullptr) {
 
+    // found
     if (key == currentNode->key) {
       return currentNode;
     }
+    //left side
     else if (key < currentNode->key) {
       currentNode = currentNode->left;
     }
