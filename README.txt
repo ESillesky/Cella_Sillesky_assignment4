@@ -61,3 +61,50 @@ If complexity is a polynomial, variable with highest exponent is the worst case 
 Notation would be O(n) due to the majority of the code being if-else statements that do not change complexity.
 Recursion, in this case, would be complexity of n due to iterating through each node and left and right subtrees.
 
+int BinaryTree<T>::getNumSingleParent(NodeType<T>* root) {;
+
+  // base case                                                                             
+  if (root == NULL) {  <----------------------------------------------------  1
+    return 0;         <----------------------------------------------------  1
+  }
+  getNumSingleParent(root->left);   <----------------------------------------------------  T(n/2)
+  getNumSingleParent(root->right);   <----------------------------------------------------  T(n/2)
+
+  return isSingleParent(root) + (getNumSingleParent(root->left) + getNumSingleParent(root->right));   <————————— T(n/2) + T(n/2)
+
+}
+Time complexity:
+T(n) = T(n/2) + T(n/2) + T(n/2) + T(n/2)
+
+Big-O (Worst Case):
+If complexity is a polynomial, variable with highest exponent is the worst case scenario. Notation would be O(n) due to the majority of the code being if-else statements that do not change complexity. Recursion, in this case, would be complexity of n due to iterating through each node and left and right subtrees.
+
+template <class T>
+T BinaryTree<T>::getSumOfSubtrees(NodeType<T>*& node) {
+
+  //base case                                                                              
+  if (node == nullptr) {    <----------------------------------------------------  1
+    return 0;  <----------------------------------------------------  1
+  }
+
+
+  if(addNode){  <----------------------------------------------------  1
+    return node->key + getSumOfSubtrees(node->right) + getSumOfSubtrees(node->left);  <——————————————— T(n/2) + T(n/2)
+  }else{
+    addNode = true;                            <----------------------------------------------------  1
+    T sum = getSumOfSubtrees(node->right) + getSumOfSubtrees(node->left); <——————————————— T(n/2) + T(n/2)
+    addNode = false;  <----------------------------------------------------  1
+    return sum;  <----------------------------------------------------  1
+
+  }
+
+}
+
+Time complexity:
+T(n) = T(n/2) + T(n/2) + T(n/2) + T(n/2) + 6
+
+Big-O (Worst Case):
+If complexity is a polynomial, variable with highest exponent is the worst case scenario. Notation would be O(n) due to the majority of the code being if-else statements that do not change complexity. Recursion, in this case, would be complexity of n due to iterating through each node and left and right subtrees.
+
+
+
